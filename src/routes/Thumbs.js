@@ -88,8 +88,13 @@ class Thumbs {
 
   // main route handler
   create(req, res) {
+    console.log('A');
+    console.log('A1 ' + cfg.storageRoot);
+
     // wait for file stream to come in
     req.busboy.on('file', (fieldname, file, fn) => {
+      console.log('B');
+
       this.fname = `${new Date().getTime().toString()}_${fn}`; // file name to use
       this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
 
@@ -99,11 +104,14 @@ class Thumbs {
 
       // wait for file to be saved to disk
       fstream.on('close', () => {
+        console.log('C');
         // async open the file using lwip
         this.openFile()
           .then(() => {
+            console.log('D');
             // create a thumbs async
             const promThu = this.createThumbs().then(() => {
+              console.log('E');
               // success - everything was done
               this.apiResponse.ok = 1;
               this.apiResponse.filename = this.fname;
@@ -114,6 +122,7 @@ class Thumbs {
             return promThu;
           })
           .catch((e) => {
+            console.log('F');
             // fail - something failed in workflow, look at error
             this.apiResponse.ok = 0;
             this.apiResponse.error = e;
