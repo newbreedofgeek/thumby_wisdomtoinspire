@@ -20,7 +20,8 @@ class Thumbs {
       this.image.clone((e1, cloned) => {
         cloned.batch()
           .scale(targetScale)
-          .writeFile(path.join(__dirname, '/../..', cfg.storageRoot, subFolder, this.fname), (e2) => {
+          // .writeFile(path.join(__dirname, '/../..', cfg.storageRoot, subFolder, this.fname), (e2) => {
+          .writeFile(path.join(cfg.storageRoot, subFolder, this.fname), (e2) => {
             if (e2) reject(e2);
 
             resolve();
@@ -126,6 +127,7 @@ class Thumbs {
           })
           .catch((e) => {
             console.log('F');
+            console.log(e);
             // fail - something failed in workflow, look at error
             this.apiResponse.ok = 0;
             this.apiResponse.error = e;
