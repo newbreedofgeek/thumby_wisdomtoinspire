@@ -1,7 +1,7 @@
 export default {
   env: 'production',
   port: 7000,
-  trashOriginal: false,
+  trashOriginal: true,
   storageRoot: '/storage',
   lrgWidth: 600,
   medWidth: 312,
