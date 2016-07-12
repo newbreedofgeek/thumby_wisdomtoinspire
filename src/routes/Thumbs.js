@@ -96,7 +96,8 @@ class Thumbs {
       console.log('B');
 
       this.fname = `${new Date().getTime().toString()}_${fn}`; // file name to use
-      this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
+      // this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
+      this.originalImgLoc = path.join(__dirname, cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
 
       // save the stream to disk
       const fstream = fs.createWriteStream(this.originalImgLoc);
