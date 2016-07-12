@@ -20,8 +20,8 @@ class Thumbs {
       this.image.clone((e1, cloned) => {
         cloned.batch()
           .scale(targetScale)
-          // .writeFile(path.join(__dirname, '/../..', cfg.storageRoot, subFolder, this.fname), (e2) => {
-          .writeFile(path.join(cfg.storageRoot, subFolder, this.fname), (e2) => {
+          .writeFile(path.join(__dirname, '/../..', cfg.storageRoot, subFolder, this.fname), (e2) => {
+          // .writeFile(path.join(cfg.storageRoot, subFolder, this.fname), (e2) => {
             if (e2) reject(e2);
 
             resolve();
@@ -99,8 +99,8 @@ class Thumbs {
       console.log('B2 cfg.storageRoot ' + cfg.storageRoot);
 
       this.fname = `${new Date().getTime().toString()}_${fn}`; // file name to use
-      // this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
-      this.originalImgLoc = path.join(cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
+      this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
+      // this.originalImgLoc = path.join(cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
 
       // save the stream to disk
       const fstream = fs.createWriteStream(this.originalImgLoc);
