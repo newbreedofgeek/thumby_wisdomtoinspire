@@ -21,7 +21,6 @@ class Thumbs {
         cloned.batch()
           .scale(targetScale)
           .writeFile(path.join(__dirname, '/../..', cfg.storageRoot, subFolder, this.fname), (e2) => {
-          // .writeFile(path.join(cfg.storageRoot, subFolder, this.fname), (e2) => {
             if (e2) reject(e2);
 
             resolve();
@@ -89,18 +88,10 @@ class Thumbs {
 
   // main route handler
   create(req, res) {
-    console.log('A');
-    console.log('A1 ' + cfg.storageRoot);
-
     // wait for file stream to come in
     req.busboy.on('file', (fieldname, file, fn) => {
-      console.log('B');
-      console.log('B1 __dirname ' + __dirname);
-      console.log('B2 cfg.storageRoot ' + cfg.storageRoot);
-
       this.fname = `${new Date().getTime().toString()}_${fn}`; // file name to use
       this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
-      // this.originalImgLoc = path.join(cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
 
       // save the stream to disk
       const fstream = fs.createWriteStream(this.originalImgLoc);
@@ -108,14 +99,11 @@ class Thumbs {
 
       // wait for file to be saved to disk
       fstream.on('close', () => {
-        console.log('C');
         // async open the file using lwip
         this.openFile()
           .then(() => {
-            console.log('D');
             // create a thumbs async
             const promThu = this.createThumbs().then(() => {
-              console.log('E');
               // success - everything was done
               this.apiResponse.ok = 1;
               this.apiResponse.filename = this.fname;
@@ -126,8 +114,6 @@ class Thumbs {
             return promThu;
           })
           .catch((e) => {
-            console.log('F');
-            console.log(e);
             // fail - something failed in workflow, look at error
             this.apiResponse.ok = 0;
             this.apiResponse.error = e;
