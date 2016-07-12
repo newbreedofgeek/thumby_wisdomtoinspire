@@ -94,6 +94,8 @@ class Thumbs {
     // wait for file stream to come in
     req.busboy.on('file', (fieldname, file, fn) => {
       console.log('B');
+      console.log('B1 __dirname ' + __dirname);
+      console.log('B2 cfg.storageRoot ' + cfg.storageRoot);
 
       this.fname = `${new Date().getTime().toString()}_${fn}`; // file name to use
       // this.originalImgLoc = path.join(__dirname, '/../..', cfg.storageRoot, '/originals/', this.fname);  // full path of original image location
