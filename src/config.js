@@ -6,5 +6,5 @@ export default {
   lrgWidth: 600,
   medWidth: 312,
   smlWidth: 160,
-  imgCache: 31536000 // cache imgs for 8 hours here
+  imgCache: '31536000' // cache imgs for 8 hours here
 };
