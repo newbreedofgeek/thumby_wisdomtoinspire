@@ -58,3 +58,4 @@ in the case of a mounted directory, your images can be referenced from : `[http:
   - formalise the first version
 - 0.0.3
   - initial working version
+  
